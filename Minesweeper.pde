@@ -85,9 +85,9 @@ public class MSButton
       marked = true;
     else if(bombs.contains(this))
       displayLosingMessage();
-    else if(countBombs(row,col) > 0)
+    else if(countBombs(r,c) > 0)
     {
-      label = countBombs();
+      setLabel(str(countBombs(r,c)));
     }
     
     else if (!bombs.contains(this))
@@ -142,5 +142,3 @@ public class MSButton
      return numBombs;
   }
 }
-
-
