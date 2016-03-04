@@ -83,13 +83,12 @@ public class MSButton
     clicked = true;
     if(keyPressed == true)
       marked = true;
+    else if(keyPressed == true && buttons[r][c].isMarked()==true)
+      marked = false;
     else if(bombs.contains(this))
       displayLosingMessage();
     else if(countBombs(r,c) > 0)
-    {
       setLabel(str(countBombs(r,c)));
-    }
-    
     else if (!bombs.contains(this))
      {
       if (isValid(r, c-1) && buttons[r][c-1].isMarked()==false && buttons[r][c-1].isClicked()==false)
@@ -136,8 +135,11 @@ public class MSButton
     int numBombs = 0;
     for(int r = row-1; r <= row+1; r++)
       for(int c = col-1; c<= col+1; c++)
-        if(isValid(row,col) == true && bombs.contains(buttons[row][col])==true)
+        if(isValid(r,c) == true && bombs.contains(buttons[r][c])==true)
+        {
           numBombs++;
+        }
+
      
      return numBombs;
   }
