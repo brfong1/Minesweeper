@@ -37,7 +37,7 @@ public void draw()
 }
 public boolean isWon()
 {
-  //your code here
+ /* if(countBombs(r,c)==)*/
   return false;
 }
 public void displayLosingMessage()
@@ -68,22 +68,15 @@ public class MSButton
     marked = clicked = false;
     Interactive.add( this ); // register it with the manager
   }
-  public boolean isMarked()
-  {
-    return marked;
-  }
-  public boolean isClicked()
-  {
-    return clicked;
-  }
-  // called by manager
-
+  public boolean isMarked(){return marked;}
+  public boolean isClicked(){return clicked;}
+  
   public void mousePressed () 
   {
     clicked = true;
-    if(keyPressed == true)
+    if(mousePressed && mouseButton == RIGHT && buttons[r][c].isMarked()==false)
       marked = true;
-    else if(keyPressed == true && buttons[r][c].isMarked()==true)
+    else if(mousePressed && mouseButton == RIGHT && buttons[r][c].isMarked()==true)
       marked = false;
     else if(bombs.contains(this))
       displayLosingMessage();
