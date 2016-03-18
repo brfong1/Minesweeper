@@ -16,7 +16,7 @@ void setup ()
     for (int x = 0; x < 20; x++)
       buttons[x][y] = new MSButton(x, y);
 
-  // for (int i = 0; i < 20; i++)
+   for (int i = 0; i < 2; i++)
     setBombs();
 }
 public void setBombs()
@@ -32,7 +32,8 @@ public void setBombs()
 public void draw()
 {
   background(0);
-  if (isWon()){
+  if(isWon())
+  {
     displayWinningMessage();
     noLoop();
   }
@@ -42,7 +43,7 @@ public boolean isWon() //------------------------------------------------------
     int count = 0;
 for(int r = 0; r < NUM_ROWS; r++)
  for(int c = 0; c < NUM_COLS; c++){
-   if(buttons[r][c].isClicked()==true || (bombs.contains(buttons[r][c]) && buttons[r][c].isMarked()==true))
+   if((buttons[r][c].isClicked()==true && bombs.contains(buttons[r][c]) == false) || (bombs.contains(buttons[r][c]) && buttons[r][c].isMarked()==true))
      count++;
 }
 if(count == (NUM_COLS*NUM_ROWS))
@@ -51,16 +52,21 @@ return false;
 }
 public void displayLosingMessage()
 {
-  //your code here
+  String kek = "you lose";
+  for(int i = 0; i < kek.length(); i++)
+    buttons[10][i+5].setLabel(kek.substring(i,i+1));   
+ for(int r = 0; r < NUM_ROWS; r++)
+  for(int c = 0; c < NUM_COLS; c++)
+    if(bombs.contains(buttons[r][c]))
+      buttons[r][c].mousePressed();
+  noLoop();
 }
 public void displayWinningMessage()
 {
-  String kek = "you lose";
-  // String kok = " ͡° ʖ ͡°)";
+  String kek = "you win!";
   for(int i = 0; i < kek.length(); i++)
     buttons[10][i+5].setLabel(kek.substring(i,i+1));   
-  // for(int i = 0; i < kok.length(); i++)
-  //   buttons[11][i+5].setLabel(kok.substring(i,i+1)); 
+  // noLoop();
 }
 //--------------------------------------------------------------------------------------------
 public class MSButton
